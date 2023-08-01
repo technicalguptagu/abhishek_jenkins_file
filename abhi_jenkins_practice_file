@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    environment {
+        name = 'aabhishek'
+        wife = 'shubh'
+    }    
+    parameters {
+        string(name: 'Person' , defaultValue:'Saurav Sharma' , description:'Who Are You?')
+        booleanParam(name: 'ismale' , defaultValue:'true' , description:'')
+        choice(name: 'city' , choices: ['jaipur','mumbai','pune','banglore'] , description:'')
+    }
+    stages {
+        stage('RUN AS a command') {
+            steps {
+                sh 'date'
+                sh 'pwd'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'echo "$(name)"'
+                sh 'echo "$(build_id)"'
+                sh 'echo "$(wife)"'
+            }
+        }
+        stage('Parameters') {
+            steps {
+                sh 'echo "$(CITY)"'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello Shubhada'
+            }
+        }
+    }
+}    
